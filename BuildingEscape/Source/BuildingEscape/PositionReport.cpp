@@ -20,7 +20,8 @@ void UPositionReport::BeginPlay()
 
 	// UE_LOG and TEXT are macros
 	FString ObjectName = GetOwner()->GetName();
-	UE_LOG(LogTemp, Warning, TEXT("Position Report reporting for booty on %s."), *ObjectName);
+	FString ObjectPos = GetOwner()->GetTransform().GetLocation().ToString();
+	UE_LOG(LogTemp, Warning, TEXT("%s is at %s."), *ObjectName, *ObjectPos);
 }
 
 
