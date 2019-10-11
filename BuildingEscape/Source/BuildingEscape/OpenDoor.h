@@ -33,5 +33,8 @@ private:
 	// attach a trigger volume into OpenDoor
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume* PressurePlate;
+
+	UPROPERTY(EditAnywhere)
+	AActor* PressurePlate;	// pawn inherits from actor
 		
 };
