@@ -30,7 +30,7 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	float OpenAngle = 90.0f;
 
-	// attached a trigger volume into OpenDoor
+	// attach a trigger volume into OpenDoor
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume* PressurePlate;
 		
