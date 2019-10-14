@@ -20,6 +20,9 @@ void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	// Get owner on begin play
+	Owner = GetOwner();
+
 	// Top down way to get the pawn.
 	// Rememvber: ActorThatOpens returns a pointer to an AActor.
 	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
@@ -27,14 +30,14 @@ void UOpenDoor::BeginPlay()
 
 void UOpenDoor::OpenDoor()
 {
-	// find actor
-	AActor* Owner = GetOwner();
-
-	// create rotator
-	FRotator NewRotation = FRotator(0.0f, -60.0f, 0.0f);
-
 	// set the door roatation
-	Owner->SetActorRotation(NewRotation);
+	Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f));
+}
+
+void UOpenDoor::CloseDoor()
+{
+	// set the door roatation
+	Owner->SetActorRotation(FRotator(0.0f, 0.0f, 0.0f));
 }
 
 
@@ -48,6 +51,13 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	if (PressurePlate && PressurePlate->IsOverlappingActor(ActorThatOpens))
 	{
 		OpenDoor();
+		LastDoorOpenTime = GetWorld()->GetTimeSeconds();
+	}
+
+	// Check if its time to close the door
+	if (GetWorld()->GetTimeSeconds() - LastDoorOpenTime > DoorCloseDelay)
+	{
+		CloseDoor();
 	}
 }
 
