@@ -43,9 +43,10 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 		OUT PlayerViewPointLocation,
 		OUT PlayerViewPointRotation
 	);
-	UE_LOG(LogTemp, Warning, TEXT("Location: %s, Rotation: %s"), 
+	// LOG location and rotation on every tick
+	/*UE_LOG(LogTemp, Warning, TEXT("Location: %s, Rotation: %s"), 
 		*PlayerViewPointLocation.ToString(), 
 		*PlayerViewPointRotation.ToString()
-	);
+	);*/
 }
 
