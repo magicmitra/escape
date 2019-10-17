@@ -3,6 +3,7 @@
 
 #include "Grabber.h"
 #include "DrawDebugHelpers.h"
+#include "CollisionQueryParams.h"
 
 #define OUT
 
@@ -33,20 +34,15 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// Get player view point on every tick
+	/// Get player view point on every tick
 	FVector PlayerViewPointLocation;
 	FRotator PlayerViewPointRotation;
 	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(
 		OUT PlayerViewPointLocation,
 		OUT PlayerViewPointRotation
 	);
-	// LOG location and rotation on every tick
-	/*UE_LOG(LogTemp, Warning, TEXT("Location: %s, Rotation: %s"), 
-		*PlayerViewPointLocation.ToString(), 
-		*PlayerViewPointRotation.ToString()
-	);*/
 
-	// Draw a green trace in the world to visualize
+	/// Draw a green trace in the world to visualize
 	FVector LineTraceEnd = PlayerViewPointLocation + PlayerViewPointRotation.Vector() * Reach;
 	DrawDebugLine(
 		GetWorld(),
@@ -59,7 +55,17 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 		10.0f
 	);
 
-	// Line-trace (AKA ray-cast) out to reach distance
-	GetWorld()->LineTraceSingleByObjectType;
+	/// Setup 
+	FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
+
+	/// Line-trace (AKA ray-cast) out to reach distance
+	FHitResult Hit;
+	GetWorld()->LineTraceSingleByObjectType(
+		OUT Hit,
+		PlayerViewPointLocation,
+		LineTraceEnd,
+		FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody),
+		TraceParameters
+	);
 }
 
