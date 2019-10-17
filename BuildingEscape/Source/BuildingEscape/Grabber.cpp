@@ -59,6 +59,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 		10.0f
 	);
 
-	// Line-trace (AKA ray-cast out to reach distance)
+	// Line-trace (AKA ray-cast) out to reach distance
+	GetWorld()->LineTraceSingleByObjectType;
 }
 
