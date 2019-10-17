@@ -67,5 +67,9 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 		FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody),
 		TraceParameters
 	);
+
+	/// Log the actor that is hit
+	AActor* HitActor = Hit.GetActor();
+	UE_LOG(LogTemp, Warning, TEXT("%s is hit."), *HitActor->GetName());
 }
 
