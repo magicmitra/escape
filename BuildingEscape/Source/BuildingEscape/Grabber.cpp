@@ -35,6 +35,7 @@ void UGrabber::BeginPlay()
 	}
 	else
 	{
+		// Log error if it is not found
 		UE_LOG(LogTemp, Error, TEXT("%s missing physics handle component"), *GetOwner()->GetName());
 	}
 	//=================================================================================================================
