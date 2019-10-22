@@ -5,7 +5,7 @@
 #include "DrawDebugHelpers.h"
 #include "CollisionQueryParams.h"
 
-#define OUT
+#define OUT // will be used on variables that are expected to change 
 
 // Sets default values for this component's properties
 UGrabber::UGrabber()
