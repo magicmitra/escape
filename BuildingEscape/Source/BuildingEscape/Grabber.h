@@ -32,4 +32,5 @@ private:
 	UInputComponent* InputComponent = nullptr;
 	void Grab(); // Ray-cast and grab what is in reach
 	void Release(); // called once the grab is released
+	void FindPhysicsHandleComponent(); // find attached physics component
 };

@@ -21,7 +21,6 @@ void UGrabber::BeginPlay()
 {
 	Super::BeginPlay();
 	FindPhysicsHandleComponent();
-
 	//=================================================================================================================
 	/// Look for attached Input component (only appears at runtime)
 	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
@@ -39,9 +38,9 @@ void UGrabber::BeginPlay()
 	//==================================================================================================================
 }
 
-void FindPhysicsHandleComponent()
+void UGrabber::FindPhysicsHandleComponent()
 {
-	/// Look for physics handle component
+	/// Look for attached Physics handle
 	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
 	if (PhysicsHandle)
 	{
