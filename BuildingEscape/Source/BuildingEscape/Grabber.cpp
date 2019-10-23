@@ -59,11 +59,17 @@ void UGrabber::SetupInputComponent()
 void UGrabber::Grab()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Grab Pressed"));
+
+	/// try and reah actors with physics body collision channel set
+
+	/// if something is hit, attach physics handle
 }
 
 void UGrabber::Release()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Grab Released"));
+
+	// TODO: release physics handle
 }
 
 
