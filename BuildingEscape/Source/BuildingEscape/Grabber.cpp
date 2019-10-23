@@ -60,7 +60,8 @@ void UGrabber::Grab()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Grab Pressed"));
 
-	/// try and reah actors with physics body collision channel set
+	/// Line trace and see if possible to reach actors with physics body collision channel set
+	GetFirstPhysicsBodyInReach();
 
 	/// if something is hit, attach physics handle
 }
@@ -78,6 +79,12 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	// if physics handle is attached
+		// move object thats being held
+}
+
+const FHitResult UGrabber::GetFirstPhysicsBodyInReach()
+{
 	/// Get player view point on every tick
 	FVector PlayerViewPointLocation;
 	FRotator PlayerViewPointRotation;
@@ -86,18 +93,8 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 		OUT PlayerViewPointRotation
 	);
 
-	/// Draw a green trace in the world to visualize
+	/// Line Trace, a vector multiplied by Reach
 	FVector LineTraceEnd = PlayerViewPointLocation + PlayerViewPointRotation.Vector() * Reach;
-	DrawDebugLine(
-		GetWorld(),
-		PlayerViewPointLocation,
-		LineTraceEnd,
-		FColor(100, 255, 0),
-		false,
-		0.0f,
-		0.0f,
-		10.0f
-	);
 
 	/// Setup 
 	FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
@@ -118,5 +115,5 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Line trace hit: %s."), *(ActorHit->GetName()));
 	}
-
+	return FHitResult();
 }
