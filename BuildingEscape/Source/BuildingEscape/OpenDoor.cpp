@@ -22,10 +22,6 @@ void UOpenDoor::BeginPlay()
 	
 	// Get owner on begin play
 	Owner = GetOwner();
-
-	// Top down way to get the pawn.
-	// Rememvber: ActorThatOpens returns a pointer to an AActor.
-	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
 }
 
 void UOpenDoor::OpenDoor()
@@ -47,8 +43,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// Poll the trigger volume on every frame
-	// If the ActorThatOpens is in the volume, then open the door
-	if (PressurePlate && PressurePlate->IsOverlappingActor(ActorThatOpens))
+	if (GetTotalMassOfActorsOnPlate() > 50.0f)	// mass is hardcoded for now
 	{
 		OpenDoor();
 		LastDoorOpenTime = GetWorld()->GetTimeSeconds();
@@ -59,5 +54,16 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	{
 		CloseDoor();
 	}
+}
+
+float UOpenDoor::GetTotalMassOfActorsOnPlate()
+{
+	float TotalMass = 0.f;
+
+	// find all the overlapping actors
+
+	// Iterate through them adding all of their masses.
+
+	return TotalMass;
 }
 
