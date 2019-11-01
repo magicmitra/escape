@@ -30,7 +30,7 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UPROPERTY(BluePrintAssignable)
-	FOnOpenRequest OnOpenRequest;	// prepare to be broadcasted to blueprint
+	FOnOpenRequest OnOpenRequest;	// prepare to be broadcasted to blueprint. Broadcast is performed at cpp file
 
 private:
 	UPROPERTY(EditAnywhere)
