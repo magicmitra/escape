@@ -29,7 +29,8 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	UPROPERTY(BluePrintAssignable);
+	UPROPERTY(BluePrintAssignable)
+	FOnOpenRequest OnOpenRequest;	// prepare to be broadcasted to blueprint
 
 private:
 	UPROPERTY(EditAnywhere)
