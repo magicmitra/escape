@@ -33,9 +33,6 @@ public:
 	FOnOpenRequest OnOpenRequest;	// prepare to be broadcasted to blueprint. Broadcast is performed at cpp file
 
 private:
-	UPROPERTY(EditAnywhere)
-	float OpenAngle = 90.0f;
-
 	// attach a trigger volume into OpenDoor
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume* PressurePlate = nullptr;
