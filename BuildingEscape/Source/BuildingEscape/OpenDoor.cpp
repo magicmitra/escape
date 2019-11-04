@@ -28,13 +28,6 @@ void UOpenDoor::BeginPlay()
 	}
 }
 
-void UOpenDoor::CloseDoor()
-{
-	// set the door roatation
-	Owner->SetActorRotation(FRotator(0.0f, 0.0f, 0.0f));
-}
-
-
 // Called every frame
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
@@ -43,11 +36,11 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	// Poll the trigger volume on every frame
 	if (GetTotalMassOfActorsOnPlate() > TriggerMass)	// mass is hardcoded for now
 	{
-		OnOpenRequest.Broadcast(); // this is possible because corresponding header file prepared for broadcast
+		OnOpen.Broadcast(); // this is possible because corresponding header file prepared for broadcast
 	}
 	else
 	{
-		CloseDoor();
+		OnClose.Broadcast();
 	}
 }
 

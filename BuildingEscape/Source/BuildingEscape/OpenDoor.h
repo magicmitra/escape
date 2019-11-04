@@ -7,7 +7,7 @@
 #include "Engine/TriggerVolume.h"
 #include "OpenDoor.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnOpenRequest); // MACRO to attach blueprint to c++
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDoorEvent); // MACRO to attach blueprint to c++
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
@@ -22,14 +22,15 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	void CloseDoor();
-
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UPROPERTY(BluePrintAssignable)
-	FOnOpenRequest OnOpenRequest;	// prepare to be broadcasted to blueprint. Broadcast is performed at cpp file
+	FDoorEvent OnOpen;	// prepare to be broadcasted to blueprint. Broadcast is performed at cpp file
+
+	UPROPERTY(BluePrintAssignable)
+	FDoorEvent OnClose;
 
 private:
 	// attach a trigger volume into OpenDoor
