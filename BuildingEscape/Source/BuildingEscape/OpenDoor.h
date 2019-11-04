@@ -22,7 +22,6 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	void OpenDoor();
 	void CloseDoor();
 
 public:	
@@ -38,9 +37,7 @@ private:
 	ATriggerVolume* PressurePlate = nullptr;
 
 	UPROPERTY(EditAnywhere)
-	float DoorCloseDelay = 0.5f;
-
-	float LastDoorOpenTime;
+	float TriggerMass = 30.f;
 
 	AActor* Owner = nullptr; // The owning door
 
