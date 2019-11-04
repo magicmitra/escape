@@ -32,7 +32,7 @@ void UOpenDoor::OpenDoor()
 {
 	// set the door roatation
 	// Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f));
-	OnOpenRequest.Broadcast(); // this is possible because corresponding header file broadcasted
+	OnOpenRequest.Broadcast(); // this is possible because corresponding header file prepared for broadcast
 }
 
 void UOpenDoor::CloseDoor()
